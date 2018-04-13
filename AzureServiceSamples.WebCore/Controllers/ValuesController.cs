@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AzureServiceSamples.WebCore.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class ValuesController : Controller
     {
         private const string FileContentPath = "SampleFiles/test.json";
@@ -23,39 +23,15 @@ namespace AzureServiceSamples.WebCore.Controllers
             _blobStorageService = blobStorageService;
         }
         // GET api/values
-        [HttpGet]
-        public async Task<IEnumerable<string>> Get()
+        [HttpPost]
+        public async Task<IEnumerable<string>> StoreToBlobStorage()
         {
             var webRootPath = _hostingEnvironment.WebRootPath;
             var contentRootPath = _hostingEnvironment.ContentRootPath;
             var fullPath = Path.Combine(contentRootPath, FileContentPath);
-             await _blobStorageService.StoreFileAsync(fullPath);
+            await _blobStorageService.StoreFileAsync(fullPath);
             return new string[] { "Success" };
         }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+      
     }
 }

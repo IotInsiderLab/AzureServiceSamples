@@ -12,14 +12,14 @@ namespace AzureServiceSamples.Web.Controllers
 {
     public class ValuesController : ApiController
     {
-        private const string FileContentPath = "SampleFiles/test.json";
+        private const string FileContentPath = @"~/SampleFiles/test.json";
 
         private readonly IBlobStorageService _blobStorageService;
         public ValuesController(IBlobStorageService blobStorageService)
         {
             _blobStorageService = blobStorageService;
         }
-        // GET api/values
+        
         public async Task<IEnumerable<string>> StoreToBlobStorage()
         {
             var fullPath = System.Web.Hosting.HostingEnvironment.MapPath(FileContentPath);

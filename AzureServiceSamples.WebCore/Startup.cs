@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace AzureServiceSamples.WebCore
 {
@@ -27,6 +28,11 @@ namespace AzureServiceSamples.WebCore
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Azure Service Samples", Version = "v1" });
+            });
 
             var builder = new ContainerBuilder();
 
@@ -53,11 +59,11 @@ namespace AzureServiceSamples.WebCore
             }
 
             app.UseMvc();
-        }
-
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-           // builder.RegisterModule(new Autofac.mo());
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Azure Service Samples API V1");
+            });
         }
     }
 }
