@@ -12,7 +12,6 @@ namespace AzureServiceSamples.BlobStorage
     public class BlobStorageService : IBlobStorageService
     {
         private const string ContainerReference = "files";
-        private const string SourceFile = "SampleFile/test.json";
         private const string FileExtension = ".json";
 
         private readonly IConnectionStringService _connectionStringService;

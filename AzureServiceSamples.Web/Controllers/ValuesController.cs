@@ -12,42 +12,21 @@ namespace AzureServiceSamples.Web.Controllers
 {
     public class ValuesController : ApiController
     {
+        private const string FileContentPath = "SampleFiles/test.json";
+
         private readonly IBlobStorageService _blobStorageService;
-        public ValuesController( )
+        public ValuesController(IBlobStorageService blobStorageService)
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<BlobStorage.Module>();
-            builder.RegisterModule<Common.Module>();
-            var container = builder.Build();
-            _blobStorageService = container.Resolve<IBlobStorageService>();
+            _blobStorageService = blobStorageService;
         }
         // GET api/values
-        public async Task<IEnumerable<string>> Get()
+        public async Task<IEnumerable<string>> StoreToBlobStorage()
         {
-            var fullPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/SampleFiles/test.json");
+            var fullPath = System.Web.Hosting.HostingEnvironment.MapPath(FileContentPath);
             await _blobStorageService.StoreFileAsync(fullPath);
-            return new string[] { "value1", "value2" };
+            return new string[] { "success" };
         }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+        
+     
     }
 }

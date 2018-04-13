@@ -13,6 +13,7 @@ namespace AzureServiceSamples.WebCore.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private const string FileContentPath = "SampleFiles/test.json";
         private readonly IBlobStorageService _blobStorageService;
         private readonly IHostingEnvironment _hostingEnvironment;
 
@@ -27,9 +28,9 @@ namespace AzureServiceSamples.WebCore.Controllers
         {
             var webRootPath = _hostingEnvironment.WebRootPath;
             var contentRootPath = _hostingEnvironment.ContentRootPath;
-            var fullPath = Path.Combine(contentRootPath, "SampleFiles/test.json");
+            var fullPath = Path.Combine(contentRootPath, FileContentPath);
              await _blobStorageService.StoreFileAsync(fullPath);
-            return new string[] { "value1", "value2" };
+            return new string[] { "Success" };
         }
 
         // GET api/values/5
