@@ -7,5 +7,7 @@ namespace AzureServiceSamples.Common
     public interface IConnectionStringService
     {
         string BlobStorageConnectionString { get; }
+        string CosmosDbEndpoint { get; }
+        string CosmosDbKey { get; }
     }
 }

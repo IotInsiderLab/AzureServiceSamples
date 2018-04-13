@@ -38,14 +38,13 @@ namespace AzureServiceSamples.WebCore
 
             builder.RegisterModule<BlobStorage.Module>();
             builder.RegisterModule<Common.Module>();
+            builder.RegisterModule<CosmosDb.Module>();
+
+
             // When you do service population, it will include your controller
             // types automatically.
             builder.Populate(services);
-
-            // If you want to set up a controller for, say, property injection
-            // you can override the controller registration after populating services.
-           // builder.RegisterType<MyController>().PropertiesAutowired();
-
+            
             var container = builder.Build();
             return new AutofacServiceProvider(container);
         }

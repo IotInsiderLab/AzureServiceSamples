@@ -5,8 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using AzureServiceSamples.BlobStorage;
+using AzureServiceSamples.CosmosDb;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
 
 namespace AzureServiceSamples.WebCore.Controllers
 {
@@ -14,15 +16,20 @@ namespace AzureServiceSamples.WebCore.Controllers
     public class ValuesController : Controller
     {
         private const string FileContentPath = "SampleFiles/test.json";
+
         private readonly IBlobStorageService _blobStorageService;
+        private readonly ICosmosDbService _cosmosDbService;
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ValuesController(IHostingEnvironment hostingEnvironment, IBlobStorageService blobStorageService)
+        public ValuesController(IHostingEnvironment hostingEnvironment, 
+            IBlobStorageService blobStorageService,
+            ICosmosDbService cosmosDbService)
         {
             _hostingEnvironment = hostingEnvironment;
             _blobStorageService = blobStorageService;
+            _cosmosDbService = cosmosDbService;
         }
-        // GET api/values
+        // Post api/values/storetoblobstorage
         [HttpPost]
         public async Task<IEnumerable<string>> StoreToBlobStorage()
         {
@@ -32,6 +39,17 @@ namespace AzureServiceSamples.WebCore.Controllers
             await _blobStorageService.StoreFileAsync(fullPath);
             return new string[] { "Success" };
         }
-      
+
+        // Post api/values/storetocosmosdb
+        [HttpPost]
+        public async Task<IEnumerable<string>> StoreToCosmosDb([FromBody] dynamic documentContent)
+        {
+            //TODO replace dynamic with conrete type in order to make it working
+            var id = Guid.NewGuid();
+            documentContent.id = id;
+            await _cosmosDbService.CreateDocumentAsync(documentContent);
+            return new string[] { "Success" };
+        }
+
     }
 }

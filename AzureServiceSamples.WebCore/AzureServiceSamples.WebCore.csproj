@@ -16,6 +16,8 @@
     <PackageReference Include="Autofac" Version="4.7.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="1.9.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="NSwag.AspNetCore" Version="11.17.0" />
     <PackageReference Include="NSwag.Core" Version="11.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
@@ -34,6 +36,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AzureServiceSamples.BlobStorage\AzureServiceSamples.BlobStorage.csproj" />
     <ProjectReference Include="..\AzureServiceSamples.Common\AzureServiceSamples.Common.csproj" />
+    <ProjectReference Include="..\AzureServiceSamples.CosmosDb\AzureServiceSamples.CosmosDb.csproj" />
   </ItemGroup>
 
 </Project>
