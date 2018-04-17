@@ -26,7 +26,7 @@ namespace AzureServiceSamples.BlobStorage
 
         public void Initialize()
         {
-            var storageConnectionString = _connectionStringService.BlobStorageConnectionString;
+            var storageConnectionString = _connectionStringService.StorageConnectionString;
             if (CloudStorageAccount.TryParse(storageConnectionString, out _storageAccount))
             {
                 try

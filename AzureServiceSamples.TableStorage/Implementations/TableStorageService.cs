@@ -26,7 +26,7 @@ namespace AzureServiceSamples.TableStorage
             _mapper = mapper;
             _connectionStringService = connectionStringService;
 
-            _cloudStorageAccount = CloudStorageAccount.Parse(_connectionStringService.BlobStorageConnectionString);
+            _cloudStorageAccount = CloudStorageAccount.Parse(_connectionStringService.StorageConnectionString);
 
             var client = _cloudStorageAccount.CreateCloudTableClient();
             _table = client.GetTableReference(SampleObjectTableName);

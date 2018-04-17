@@ -6,7 +6,7 @@ namespace AzureServiceSamples.Common
 {
     public class ConnectionStringService : IConnectionStringService
     {
-        public string BlobStorageConnectionString => "";
+        public string StorageConnectionString => "your_connection_string_here";
 
         public string CosmosDbEndpoint => "";
 
