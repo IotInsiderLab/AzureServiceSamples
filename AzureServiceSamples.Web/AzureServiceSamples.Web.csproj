@@ -52,6 +52,9 @@
     <Reference Include="Autofac.Integration.WebApi, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.1.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
     </Reference>
@@ -285,6 +288,14 @@
     <ProjectReference Include="..\AzureServiceSamples.Common\AzureServiceSamples.Common.csproj">
       <Project>{2957241d-fe6e-4a9c-a9ab-0558adf03a17}</Project>
       <Name>AzureServiceSamples.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AzureServiceSamples.CosmosDb\AzureServiceSamples.CosmosDb.csproj">
+      <Project>{14515bfc-fdc5-4da7-b421-00d3139aae54}</Project>
+      <Name>AzureServiceSamples.CosmosDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AzureServiceSamples.TableStorage\AzureServiceSamples.TableStorage.csproj">
+      <Project>{0f783306-dadb-4772-9ef0-8312ce00d180}</Project>
+      <Name>AzureServiceSamples.TableStorage</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

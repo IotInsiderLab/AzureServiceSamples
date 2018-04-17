@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using AzureServiceSamples.BlobStorage;
+using AzureServiceSamples.Common;
 using AzureServiceSamples.CosmosDb;
+using AzureServiceSamples.TableStorage;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Serialization;
@@ -20,14 +22,17 @@ namespace AzureServiceSamples.WebCore.Controllers
         private readonly IBlobStorageService _blobStorageService;
         private readonly ICosmosDbService _cosmosDbService;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ITableStorageService _tableStorageService;
 
         public ValuesController(IHostingEnvironment hostingEnvironment, 
             IBlobStorageService blobStorageService,
-            ICosmosDbService cosmosDbService)
+            ICosmosDbService cosmosDbService,
+            ITableStorageService tableStorageService)
         {
             _hostingEnvironment = hostingEnvironment;
             _blobStorageService = blobStorageService;
             _cosmosDbService = cosmosDbService;
+            _tableStorageService = tableStorageService;
         }
         // Post api/values/storetoblobstorage
         [HttpPost]
@@ -42,13 +47,29 @@ namespace AzureServiceSamples.WebCore.Controllers
 
         // Post api/values/storetocosmosdb
         [HttpPost]
-        public async Task<IEnumerable<string>> StoreToCosmosDb([FromBody] dynamic documentContent)
+        public async Task<IEnumerable<string>> StoreToCosmosDb([FromBody]dynamic documentContent)
         {
             //TODO replace dynamic with conrete type in order to make it working
             var id = Guid.NewGuid();
             documentContent.id = id;
             await _cosmosDbService.CreateDocumentAsync(documentContent);
             return new string[] { "Success" };
+        }
+
+        // Post api/values/storetotablestorage
+        [HttpPost]
+        public async Task<SampleObject> StoreToTableStorage([FromBody]SampleObject sampleObject)
+        {
+            var result = await _tableStorageService.InsertSampleObjectAsync(sampleObject);
+            return result;
+        }
+
+        // Post api/values/gertablestorageitems
+        [HttpGet]
+        public async Task<IEnumerable<SampleObject>> GetTableStorageItems()
+        {
+            var result = await _tableStorageService.GetSampleObjectsAsync();
+            return result;
         }
 
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +40,10 @@ namespace AzureServiceSamples.WebCore
             builder.RegisterModule<BlobStorage.Module>();
             builder.RegisterModule<Common.Module>();
             builder.RegisterModule<CosmosDb.Module>();
+            builder.RegisterModule<TableStorage.Module>();
+
+            builder.RegisterType<MapperProvider>();
+            builder.Register<IMapper>(cc => cc.Resolve<MapperProvider>().GetMapper()).SingleInstance();
 
 
             // When you do service population, it will include your controller
