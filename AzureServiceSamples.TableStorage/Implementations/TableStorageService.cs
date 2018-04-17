@@ -42,12 +42,7 @@ namespace AzureServiceSamples.TableStorage
         }
 
         public async Task<SampleObject> InsertSampleObjectAsync(SampleObject sampleObject)
-        {
-            var query = new TableQuery<SampleObjectEntity>()
-                .Where(
-                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, sampleObject.DeviceId));
-
-           
+        {  
             var entity = _mapper.Map<SampleObjectEntity>(sampleObject);
 
             TableOperation insertOperation = TableOperation.Insert(entity);
