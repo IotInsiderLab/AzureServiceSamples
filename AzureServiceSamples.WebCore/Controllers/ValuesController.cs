@@ -72,5 +72,13 @@ namespace AzureServiceSamples.WebCore.Controllers
             return result;
         }
 
+        // Post api/values/gertablestorageloggs
+        [HttpGet]
+        public async Task<IEnumerable<LogData>> GetTableStorageLoggs()
+        {
+            var result = await _tableStorageService.GetLogsAsync();
+            return result;
+        }
+
     }
 }

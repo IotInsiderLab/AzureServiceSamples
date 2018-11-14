@@ -11,5 +11,6 @@ namespace AzureServiceSamples.TableStorage
         Task<IEnumerable<SampleObject>> GetSampleObjectsAsync();
 
         Task<SampleObject> InsertSampleObjectAsync(SampleObject sampleObject);
+        Task<IEnumerable<LogData>> GetLogsAsync();
     }
 }

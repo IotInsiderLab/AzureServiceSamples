@@ -13,7 +13,7 @@ namespace AzureServiceSamples.TableStorage
 {
     public class TableStorageService : ITableStorageService
     {
-        private static readonly string SampleObjectTableName = "SampleObject";
+        private static readonly string SampleObjectTableName = "Logging";
 
         private readonly IMapper _mapper;
         private IConnectionStringService _connectionStringService;
@@ -50,6 +50,26 @@ namespace AzureServiceSamples.TableStorage
             await _table.ExecuteAsync(insertOperation);
 
             return sampleObject;
+        }
+
+        public async Task<IEnumerable<LogData>> GetLogsAsync()
+        {
+            TableQuery<Log> query = new TableQuery<Log>();
+
+            var startsWithPattern = "FATAL";
+
+            var length = startsWithPattern.Length - 1;
+            var lastChar = startsWithPattern[length];
+
+            var nextLastChar = (char)(lastChar + 1);
+            var startsWithEndPattern = startsWithPattern.Substring(0, length) + nextLastChar;
+
+            query.Where(TableQuery.CombineFilters(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.GreaterThanOrEqual, startsWithPattern),
+                TableOperators.And, TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.LessThanOrEqual, startsWithEndPattern)));
+
+            var items = await _table.ExecuteQueryAsync(query, CancellationToken.None);
+
+            return _mapper.Map<IEnumerable<LogData>>(items);
         }
     }
 }

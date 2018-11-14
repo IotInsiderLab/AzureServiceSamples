@@ -24,6 +24,18 @@ namespace AzureServiceSamples.TableStorage
                 .ForMember(dest => dest.MessageType, config => config.MapFrom(src => src.MessageType))
                 .ForMember(dest => dest.Temperature, config => config.MapFrom(src => src.Temperature));
 
+
+            CreateMap<LogData, Log>()
+                .ForMember(dest => dest.PartitionKey, config => config.Ignore())
+                .ForMember(dest => dest.RowKey, config => config.Ignore())
+                .ForMember(dest => dest.DeviceId, config => config.MapFrom(src => src.DeviceId))
+                .ForMember(dest => dest.SequenceCounter, config => config.MapFrom(src => src.SequenceCounter))
+                .ForMember(dest => dest.Text, config => config.MapFrom(src => src.Text))
+                .ForMember(dest => dest.Type, config => config.MapFrom(src => src.Type))
+                .ForMember(dest => dest.Version, config => config.MapFrom(src => src.Version))
+                .ForMember(dest => dest.ETag, config => config.Ignore())
+                .ForMember(dest => dest.Timestamp, config => config.Ignore());
+
         }
     }
 }

@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureServiceSamples.WebCore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureServiceSamples.CosmosDb", "AzureServiceSamples.CosmosDb\AzureServiceSamples.CosmosDb.csproj", "{14515BFC-FDC5-4DA7-B421-00D3139AAE54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceSamples.TableStorage", "AzureServiceSamples.TableStorage\AzureServiceSamples.TableStorage.csproj", "{0F783306-DADB-4772-9EF0-8312CE00D180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureServiceSamples.TableStorage", "AzureServiceSamples.TableStorage\AzureServiceSamples.TableStorage.csproj", "{0F783306-DADB-4772-9EF0-8312CE00D180}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceSamples.EventHub", "AzureServiceSamples.EventHub\AzureServiceSamples.EventHub.csproj", "{13122DAD-94E0-42AE-952B-29BD7C92A632}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{0F783306-DADB-4772-9EF0-8312CE00D180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F783306-DADB-4772-9EF0-8312CE00D180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F783306-DADB-4772-9EF0-8312CE00D180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13122DAD-94E0-42AE-952B-29BD7C92A632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13122DAD-94E0-42AE-952B-29BD7C92A632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13122DAD-94E0-42AE-952B-29BD7C92A632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13122DAD-94E0-42AE-952B-29BD7C92A632}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
